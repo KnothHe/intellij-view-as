@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.github.knothhe.intellijviewas</id>
-    <name>intellij-view-as</name>
+    <name>View-as</name>
     <vendor>knothhe</vendor>
 
     <!-- Product and plugin compatibility requirements -->
@@ -8,12 +8,20 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.knothhe.intellijviewas.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.knothhe.intellijviewas.services.MyProjectService"/>
+        <applicationService serviceImplementation="com.github.knothhe.intellijviewas.services.ViewAsApplicationService"/>
+        <projectService serviceImplementation="com.github.knothhe.intellijviewas.services.ViewAsProjectService"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.knothhe.intellijviewas.listeners.MyProjectManagerListener"
+        <listener class="com.github.knothhe.intellijviewas.listeners.ViewAsProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+
+    <actions>
+        <action id="com.github.knothhe.intellijviewas.action.EditorViewAsAction"
+                class="com.github.knothhe.intellijviewas.action.EditorViewAsAction" text="View as"
+                description="View as another format">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+    </actions>
 </idea-plugin>

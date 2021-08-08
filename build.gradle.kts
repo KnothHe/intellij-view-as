@@ -27,6 +27,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
+    implementation("org.junit.jupiter:junit-jupiter:5.7.0")
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.17.1")
 }
 
@@ -110,5 +111,9 @@ tasks {
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
         channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
+    }
+
+    test {
+        useJUnitPlatform()
     }
 }
